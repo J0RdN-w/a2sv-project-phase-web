@@ -2,10 +2,9 @@ const app = require("express")();
 const axios = require("axios").default;
 const port = 7000;
 const baseUrl = "https://jsonplaceholder.typicode.com/";
-const paths = ["posts", "users", "todos"];
 
 // Request interceptor
-axios.interceptors.request.use(
+const reqInterceptor = axios.interceptors.request.use(
   function (config) {
     config.headers["Content-Type"] = "application/json";
     return config;
@@ -16,9 +15,11 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+// Response interseptor
+const resInterceptor = axios.interceptors.response.use(
   function (response) {
-    console.log(response.data);
+    console.log("Status: ", response.status);
+    console.log("Data: ", response.data);
     return response;
   },
   function (error) {
@@ -27,35 +28,21 @@ axios.interceptors.response.use(
   }
 );
 
-// GET
-axios
-  .get(baseUrl + "posts?userId=1")
-  .then((resp) => {
-    console.log(resp.data);
-  })
-  .catch((err) => {
-    console.log("Ops! something went wrong.");
-  })
-  .finally(() => {
-    console.log("---GET END---");
-  });
+// // GET
+axios.get(baseUrl + "posts?userId=1").finally(() => {
+  console.log("---GET METHOD[baseUrl/posts?userId=1]---");
+});
 
 // POST
 axios
   .post(baseUrl + "posts", {
     userId: 1,
     id: 0,
-    title: "new data",
+    title: "New Data",
     body: "new data corporis harum nihil quis provident sequi\n",
   })
-  .then((resp) => {
-    console.log(resp.data);
-  })
-  .catch((err) => {
-    console.log("Ops! something went wrong.");
-  })
   .finally(() => {
-    console.log("---POST END---");
+    console.log("---POST METHOD[baseUrl/post]---");
   });
 
 // PATCH
@@ -63,31 +50,18 @@ axios
   .patch(baseUrl + "posts/1", {
     userId: 1,
     id: 0,
-    title: "updated data",
+    title: "Updated Data",
     body: "updated data corporis harum nihil quis provident sequi\n",
   })
-  .then((resp) => {
-    console.log(resp.data);
-  })
-  .catch((err) => {
-    console.log("Ops! something went wrong.");
-  })
   .finally(() => {
-    console.log("---PATCH END---");
+    console.log("---PATCH[baseUrl/posts/1]---");
   });
 
 // DELETE
-axios
-  .delete(baseUrl + "posts/1")
-  .then((resp) => {
-    console.log(resp.data?.data);
-  })
-  .catch((err) => {
-    console.log("Ops! something went wrong.");
-  })
-  .finally(() => {
-    console.log("---DELETE END---");
-  });
+//axios.interceptors.response.eject(resInterceptor);
+axios.delete(baseUrl + "posts/" + 1).finally(() => {
+  console.log("---DELETE[baseUrl/posts/1]---");
+});
 
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
