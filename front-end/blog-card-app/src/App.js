@@ -39,7 +39,7 @@ const Title = styled.h2`
 
 const Section = styled.section`
   display: flex;
-  gap: 2rem;
+  gap: 2.3rem;
   flex-wrap: wrap;
   justify-content: center;
 `;
