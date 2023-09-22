@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputField from "./components/InputField";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Todolo } from "./model";
 
 export default function EditTodolo() {
   const [todolo, setTodolo] = useState<string>("")
   const { todoloId } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const todolos = JSON.parse(localStorage.getItem('todolos') ?? '[]')
@@ -25,6 +26,7 @@ export default function EditTodolo() {
         })
         localStorage.setItem('todolos', JSON.stringify(todolos))
         setTodolo('')
+        navigate(-1)
     }
   }
 
