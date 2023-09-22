@@ -2,23 +2,20 @@ import React from 'react'
 import { PencilIcon, ArchiveBoxXMarkIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import styled from "styled-components";
 import { Todolo } from '../model';
+import { Link } from 'react-router-dom';
 
 interface Props {
     todolos: Todolo[]
-    setTodolo:  React.Dispatch<React.SetStateAction<string>>
     setTodolos: React.Dispatch<React.SetStateAction<Todolo[]>>
   }
 
-export default function Todolos({todolos, setTodolo, setTodolos}: Props) {
+export default function Todolos({todolos, setTodolos}: Props) {
     return <>
     {todolos.map((todolo: Todolo) => {
         return <TodoloList>
         { todolo.isDone ? (() => <TodoloTxtDone><span>✔ </span>{todolo.todolo}</TodoloTxtDone>)() : (() => <TodoloTxt><span>✔ </span>{todolo.todolo}</TodoloTxt>)()}
         <Action>
-          <Edit onClick={() => {
-            setTodolo(todolo.todolo)
-            setTodolos(todolos.filter((t: Todolo) => t.id !== todolo.id))
-          }}  />
+         <Link to={`edittodolo/${todolo.id}`}> <Edit /></Link>
           <Delete onClick={() => {
             setTodolos(todolos.filter((t: Todolo) => t.id !== todolo.id))
           }} />

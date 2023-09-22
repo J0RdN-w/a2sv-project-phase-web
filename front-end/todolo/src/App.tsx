@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import InputField from "./components/InputField";
 import Todolos from "./components/Todolos";
 import { Todolo } from "./model";
+import { PlusIcon } from '@heroicons/react/24/solid'
+import { Link } from "react-router-dom";
 
 
 function App() {
 
-  const [todolo, setTodolo] = useState<string>("")
-  const [todolos, setTodolos] = useState<Todolo[]>([])
-
-  const handleTodoling = (e: React.FormEvent) => {
-    e.preventDefault()
-    if(todolo){
-      setTodolos([...todolos, {id: Date.now(), todolo: todolo, isDone: false}])
-      setTodolo('')
-      console.log(todolos)
-    }
-  }
+  const [todolos, setTodolos] = useState<Todolo[]>(JSON.parse(localStorage.getItem("todolos") ?? '[]') ?? [])
+  useEffect(() => {
+    localStorage.setItem("todolos", JSON.stringify(todolos));
+  }, [todolos]);
 
   return (
     <Main>
       <Title>todolo</Title>
       <Section>
-        <InputField todolo={todolo} setTodolo={setTodolo} handleTodoling={handleTodoling} />
-        <Todolos todolos={todolos} setTodolo={setTodolo} setTodolos={setTodolos} />
+        <Todolos todolos={todolos} setTodolos={setTodolos} />
       </Section>
+      <Link to={`addtodolo`}>
+      <Button ><AddTodo /></Button>
+      </Link>
     </Main>
   );
 }
@@ -57,5 +53,29 @@ const Section = styled.section`
   align-items: center;
   justify-content: center;
 `;
+
+const Button = styled.button`
+position: fixed;
+bottom: 1rem;
+right: 1rem;
+     background-image: linear-gradient(45deg, #214ed3, #5a4fcf);
+    padding: .3rem;
+    border-radius: .3rem;
+    outline: none;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Box shadow */
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Adjusted shadow on hover */
+}
+`
+
+const AddTodo = styled(PlusIcon)`
+width: 36px;
+  height: 36px;
+  color: white;
+  cursor: pointer;
+  `
 
 export default App;
