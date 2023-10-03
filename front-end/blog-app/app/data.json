@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Sample Title 1",
+        "author": "John Doe",
+        "date": "2023-09-09",
+        "summary": "This is a sample summary for the first item. It contains more than 20 words to provide additional information about the content of this entry. You can also leave this field empty if needed.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2018/03/07/17/15/balloon-3206530_640.jpg"
+    },
+    {
+        "title": "Sample Title 2",
+        "author": "Jane Smith",
+        "date": "2023-09-10",
+        "summary": "A longer summary for the second item in the list. It goes beyond 20 words to give readers a better understanding of the content. This field can be optional and left blank if not required.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2016/02/17/19/08/lotus-1205631_640.jpg"
+    },
+    {
+        "title": "Another Title",
+        "author": "Alice Johnson",
+        "date": "2023-09-11",
+        "summary": null,
+        "imgUrl": "https://cdn.pixabay.com/photo/2016/02/17/19/08/lotus-1205631_640.jpg"
+    },
+    {
+        "title": "Title 4",
+        "author": "Bob Wilson",
+        "date": "2023-09-12",
+        "summary": "Summary for the fourth item in the list. It provides details about the content of this entry. Remember that summaries can be optional, and you can omit them.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2017/01/19/23/46/church-1993645_640.jpg"
+    },
+    {
+        "title": "Fifth Entry",
+        "author": "Eva Brown",
+        "date": "2023-09-13",
+        "summary": "A detailed summary for the fifth item. It's more than 20 words long and helps readers understand what this entry is about. However, feel free to make this field optional.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2017/09/11/14/11/fisherman-2739115_640.jpg"
+    },
+    {
+        "title": "Item Six",
+        "author": "Chris Davis",
+        "date": "2023-09-14",
+        "summary": "A comprehensive summary for item number six. It provides valuable information about the content. You can leave this field empty if it's not needed.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2018/11/22/23/57/london-3833039_640.jpg"
+    },
+    {
+        "title": "Title Seven",
+        "author": "Grace Wilson",
+        "date": "2023-09-15",
+        "summary": "This is a summary for the seventh item in the list. It can be optional, and you have the flexibility to include or omit it based on your requirements.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2015/05/28/22/29/bicycle-788733_640.jpg"
+    },
+    {
+        "title": "Eighth Item",
+        "author": "Frank White",
+        "date": "2023-09-16",
+        "summary": null,
+        "imgUrl": "https://cdn.pixabay.com/photo/2016/01/19/19/26/amsterdam-1150319_640.jpg"
+    },
+    {
+        "title": "Sample Title 9",
+        "author": "Sophia Lee",
+        "date": "2023-09-17",
+        "summary": "Summary for the ninth item. You can choose whether to include a summary or not, depending on the specific needs of your project.",
+        "imgUrl": "https://cdn.pixabay.com/photo/2018/10/08/17/38/nature-3733115_640.jpg"
+    }
+]
