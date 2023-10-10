@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import InputField from "./components/InputField";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from './hooks'
+import { addTodolo } from './todoloSlice'
 
 export default function AddTodolo() {
   const [todolo, setTodolo] = useState<string>("")
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const handleTodoling = (e: React.FormEvent) => {
     e.preventDefault()
     if(todolo){
-      const todolos = [...JSON.parse(localStorage.getItem('todolos') ?? '[]'), {id: Date.now(), todolo: todolo, isDone: false}]
-      localStorage.setItem('todolos', JSON.stringify(todolos))
-      setTodolo('')
+      dispatch(addTodolo({id: Date.now(), task: todolo, isDone: false}))
       navigate(-1)
     }
   }

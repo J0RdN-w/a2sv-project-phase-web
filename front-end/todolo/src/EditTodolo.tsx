@@ -3,29 +3,23 @@ import styled from "styled-components";
 import InputField from "./components/InputField";
 import { useNavigate, useParams } from "react-router-dom";
 import { Todolo } from "./model";
+import { useAppSelector, useAppDispatch } from './hooks'
+import { updateTodolo } from './todoloSlice'
+
+
 
 export default function EditTodolo() {
-  const [todolo, setTodolo] = useState<string>("")
   const { todoloId } = useParams()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const todolos = JSON.parse(localStorage.getItem('todolos') ?? '[]')
-    console.log(todolos);
-    setTodolo(todolos.find((todolo: Todolo) => `${todolo.id}` === todoloId)?.todolo)
-  },[])
+  const todolos = useAppSelector(state => state.todolo.todolos)
+  const [todolo, setTodolo] = useState<string>(todolos.find((todolo) => `${todolo.id}` === todoloId)?.task ?? '')
+  const dispatch = useAppDispatch()
   
   const handleTodoling = (e: React.FormEvent) => {
     e.preventDefault()
     if(todolo){
-        const todolos = JSON.parse(localStorage.getItem('todolos') ?? '[]')
-        todolos.forEach((t: Todolo) => {
-            if (`${t.id}` === todoloId){
-                t.todolo = todolo
-            }
-        })
-        localStorage.setItem('todolos', JSON.stringify(todolos))
-        setTodolo('')
+      console.log(todolo);
+       dispatch(updateTodolo({id: Number(todoloId), task: todolo, isDone: false}))
         navigate(-1)
     }
   }
