@@ -6,8 +6,6 @@ import { Todolo } from "./model";
 import { useAppSelector, useAppDispatch } from './hooks'
 import { updateTodolo } from './todoloSlice'
 
-
-
 export default function EditTodolo() {
   const { todoloId } = useParams()
   const navigate = useNavigate()
