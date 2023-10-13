@@ -5,6 +5,9 @@ import App from './App';
 import AddTodolo from './AddTodolo';
 import EditTodolo from './EditTodolo';
 import reportWebVitals from './reportWebVitals';
+import {store} from './store';
+import { Provider } from 'react-redux'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -32,9 +35,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  <Provider store={store}>
   <React.StrictMode>
    <RouterProvider router={router} />
   </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

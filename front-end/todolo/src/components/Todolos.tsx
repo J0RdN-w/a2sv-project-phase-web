@@ -1,27 +1,26 @@
 import React from 'react'
 import { PencilIcon, ArchiveBoxXMarkIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import styled from "styled-components";
-import { Todolo } from '../model';
 import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../hooks'
+import { deleteTodolo, markDone } from '../todoloSlice'
 
-interface Props {
-    todolos: Todolo[]
-    setTodolos: React.Dispatch<React.SetStateAction<Todolo[]>>
-  }
 
-export default function Todolos({todolos, setTodolos}: Props) {
+export default function Todolos() {
+  const todolos = useAppSelector(state => state.todolo.todolos)
+  const dispatch = useAppDispatch()
+
     return <>
-    {todolos.map((todolo: Todolo) => {
+    {todolos.map((todolo) => {
         return <TodoloList>
-        { todolo.isDone ? (() => <TodoloTxtDone><span>✔ </span>{todolo.todolo}</TodoloTxtDone>)() : (() => <TodoloTxt><span>✔ </span>{todolo.todolo}</TodoloTxt>)()}
+        { todolo.isDone ? (() => <TodoloTxtDone><span>✔ </span>{todolo.task}</TodoloTxtDone>)() : (() => <TodoloTxt><span>✔ </span>{todolo.task}</TodoloTxt>)()}
         <Action>
          <Link to={`edittodolo/${todolo.id}`}> <Edit /></Link>
           <Delete onClick={() => {
-            setTodolos(todolos.filter((t: Todolo) => t.id !== todolo.id))
+            dispatch(deleteTodolo(todolo.id))
           }} />
           <Done onClick={() => {
-            todolo.isDone = !todolo.isDone
-            setTodolos([...todolos])
+            dispatch(markDone(todolo.id))
           }} />
         </Action>
       </TodoloList>

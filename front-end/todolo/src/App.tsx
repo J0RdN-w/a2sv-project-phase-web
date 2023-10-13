@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Todolos from "./components/Todolos";
-import { Todolo } from "./model";
 import { PlusIcon } from '@heroicons/react/24/solid'
 import { Link } from "react-router-dom";
 
-
 function App() {
-
-  const [todolos, setTodolos] = useState<Todolo[]>(JSON.parse(localStorage.getItem("todolos") ?? '[]') ?? [])
-  useEffect(() => {
-    localStorage.setItem("todolos", JSON.stringify(todolos));
-  }, [todolos]);
 
   return (
     <Main>
       <Title>todolo</Title>
       <Section>
-        <Todolos todolos={todolos} setTodolos={setTodolos} />
+        <Todolos />
       </Section>
       <Link to={`addtodolo`}>
       <Button ><AddTodo /></Button>
