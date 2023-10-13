@@ -8,7 +8,7 @@ function Body() {
   const stories = useSelector(state => state.story.stories)
 
   return (
-    <section className='bg-whitesmoke flex flex-col items-center gap-11 pt-16'>
+    <section className='bg-whitesmoke flex flex-col items-center gap-14 pt-16'>
 
         <div className='flex flex-col items-center gap-4'>
         <h1 className='font-extrabold text-5xl'>Success Stories</h1>
@@ -22,7 +22,7 @@ function Body() {
 
         <AcceptanceRate />
 
-        <div className='flex flex-col items-center gap-6'>
+        <div className='flex flex-col items-center gap-6 mt-4'>
             <h1 className='font-extrabold text-5xl'>Impact Stories</h1>
             <h3 className='text-2xl font-nunito'>Behind every success is a story. Learn about the stories of A2SVians.</h3>
            <div className='gap-14 flex flex-col items-center'>
